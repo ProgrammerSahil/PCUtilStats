@@ -11,8 +11,8 @@ class SystemMeasure:
     def measureMemory(self):
         memory = psutil.virtual_memory()
         self.outputObject['RAMUsagePercentage'] = memory.percent
-        self.outputObject['TotalRamInKiloBytes'] = memory.total/1000
-        self.outputObject['AvailableRAM'] = memory.available/1000
+        self.outputObject['TotalRamInGigaBytes'] = memory.total/1000000000
+        self.outputObject['AvailableRAM'] = memory.available/1000000000
 
     def getTopProcesses(self, limit):
         processes = []
