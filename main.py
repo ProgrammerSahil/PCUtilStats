@@ -9,21 +9,26 @@ class App(tk.Tk):
         super().resizable(False, False)
         super().geometry("500x400")
         super().title("CPU Util")
-        
-        self.ramUsagePercentageLabel = tk.Label(text="Ram Usage: ")
-        self.ramUsagePercentageLabel.grid(row=0, column=0)
+        tk.Label().grid(row=0, column=0)
 
+        self.ramUsagePercentageLabel = tk.Label(text="Ram Usage: ")
+        self.ramUsagePercentageLabel.grid(row=1, column=0)
         self.totalRamLabel = tk.Label(text="Total RAM: ")
-        self.totalRamLabel.grid(row=0, column=1)
+        self.totalRamLabel.grid(row=1, column=1)
+        self.availableRamLabel = tk.Label(text="Availablel RAM: ")
+        self.availableRamLabel.grid(row=1, column=2)
+
 
     def mainProg(self):
         self.update()
-        
+
     def update(self):
         self.stats = current.returnAll()
-        self.ramUsagePercentageLabel.config(text=f"Ram Usage: {str(float(self.stats['RAMUsagePercentage']))}%")
 
+        self.ramUsagePercentageLabel.config(text="Ram Usage: {:.2f}%".format(float(self.stats['RAMUsagePercentage'])))
         self.totalRamLabel.config(text="Total RAM: {:.2f} GB".format(float(self.stats['TotalRamInGigaBytes'])))
+        self.availableRamLabel.config(text="Availeble RAM: {:.2f} GB".format(float(self.stats['AvailableRAM'])))
+
 
         self.after(800, self.update)
 
