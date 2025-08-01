@@ -7,7 +7,7 @@ class SystemMeasure:
 
 
     def measureCPU(self):
-        self.outputObject['CPUPercentageUsage'] = psutil.cpu_percent(interval=1)
+        self.outputObject['CPUPercentageUsage'] = psutil.cpu_percent(interval=0.1)
     def measureMemory(self):
         memory = psutil.virtual_memory()
         self.outputObject['RAMUsagePercentage'] = memory.percent
