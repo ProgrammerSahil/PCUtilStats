@@ -13,10 +13,12 @@ class App(tk.Tk):
 
         self.ramUsagePercentageLabel = tk.Label(text="Ram Usage: ")
         self.ramUsagePercentageLabel.grid(row=1, column=0)
+        self.ramUsageBar = tk.Label(fg="green")
+        self.ramUsageBar.grid(row=1, column=1)
         self.totalRamLabel = tk.Label(text="Total RAM: ")
-        self.totalRamLabel.grid(row=1, column=1)
+        self.totalRamLabel.grid(row=2, column=0)
         self.availableRamLabel = tk.Label(text="Availablel RAM: ")
-        self.availableRamLabel.grid(row=1, column=2)
+        self.availableRamLabel.grid(row=3, column=0)
 
 
     def mainProg(self):
@@ -25,7 +27,8 @@ class App(tk.Tk):
     def update(self):
         self.stats = current.returnAll()
 
-        self.ramUsagePercentageLabel.config(text="Ram Usage: {:.2f}%".format(float(self.stats['RAMUsagePercentage'])))
+        self.ramUsagePercentageLabel.config(text=str("Ram Usage: {:.2f}%".format(float(self.stats['RAMUsagePercentage']))))
+        self.ramUsageBar.config(text = "#"*int(self.stats['RAMUsagePercentage']/10))
         self.totalRamLabel.config(text="Total RAM: {:.2f} GB".format(float(self.stats['TotalRamInGigaBytes'])))
         self.availableRamLabel.config(text="Availeble RAM: {:.2f} GB".format(float(self.stats['AvailableRAM'])))
 
